@@ -1,0 +1,25 @@
+<header >
+    <h3>{{title}}</h3>
+    
+    <app-button 
+    *ngIf="hasRoute('/') && !showUpdateTask && isAuthenticated"
+     color="{{showAddTask ? 'red' : 'green'}}"
+     text="{{showAddTask ? 'Close' : 'Add'}}"
+     (btnClick)="toggleAddTask()">
+     <a roterLink="/add"></a>
+    </app-button>
+
+    <app-button
+    *ngIf="hasRoute('/') && showUpdateTask && isAuthenticated"
+    color="red" 
+     text="Close Update"
+     (btnClick)="toggleUpdateTask()">
+     <a roterLink="/add"></a>
+    </app-button>
+
+    <h5 routerLinkActive="active" *ngIf="!isAuthenticated"><a routerLink="/auth">Authenticate</a></h5>
+    <h5>
+        <a style="cursor:pointer" class="logout" *ngIf="isAuthenticated" (click)="logout()">Logout </a>
+    
+    </h5>
+</header>
