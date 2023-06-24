@@ -30,7 +30,6 @@ export class TaskService implements OnInit {
     this.authService.user.subscribe(user=>{
       const newEmail=user.email.slice(0,(user.email.length-4))
       this.apiUrl="https://tasktracker-26918-default-rtdb.firebaseio.com/"+newEmail
-      // console.log(this.apiUrl)
     })
     // const tasks=of(TASKS) 
     // since TASKS is not an observable we use "of" to make it an observable
@@ -40,12 +39,14 @@ export class TaskService implements OnInit {
       return  this.http.get<Task[]>(this.apiUrl+'.json'
         ).pipe(
         map(responseData=>{
+          console.log(responseData)
           const postArray=[];
           for (const key in responseData){
             if(responseData.hasOwnProperty(key)){
               postArray.push({ ...responseData[key], id :key });
             }
           }
+          console.log(postArray)
           return postArray
         }),tap(tasks=>{this.tasks=tasks})
     )
@@ -59,6 +60,7 @@ export class TaskService implements OnInit {
 
 
   updateTask(newTask:Task,oldTask:Task):Observable<Task>{
+    console.log(oldTask.id)
     const url= this.apiUrl+'/'+oldTask.id+'.json';
         return this.http.put<Task>(url,newTask,httpOptions)
   }

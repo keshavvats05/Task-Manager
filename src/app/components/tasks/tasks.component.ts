@@ -36,6 +36,7 @@ export class TasksComponent implements OnInit {
    this.taskService.getTasks().subscribe(
     value=>{
       this.tasks=value;
+      console.log(value)
       // console.log(this.tasks)
       // Date object
       const date = new Date();
@@ -94,6 +95,7 @@ export class TasksComponent implements OnInit {
     }
     // CODE FOR UPDATING TASK
     this.newTask=task;
+    console.log(task)
     // console.log(this.newTask)
     if(this.isUpdate){
 
