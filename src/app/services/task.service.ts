@@ -55,6 +55,7 @@ export class TaskService implements OnInit {
 
   deleteTask(task:Task):Observable<Task>{
     const url= this.apiUrl+'/'+task.id+'.json';
+    console.log(url)
     return this.http.delete<Task>(url);
   }
 
@@ -62,6 +63,7 @@ export class TaskService implements OnInit {
   updateTask(newTask:Task,oldTask:Task):Observable<Task>{
     console.log(oldTask.id)
     const url= this.apiUrl+'/'+oldTask.id+'.json';
+
         return this.http.put<Task>(url,newTask,httpOptions)
   }
   addTask(task:Task):Observable<Task>{
